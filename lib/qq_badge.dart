@@ -6,16 +6,16 @@ class QqBadge extends StatefulWidget {
   const QqBadge({
     Key? key,
     this.radius = 10,
-    this.count = 3,
+    this.text = '3',
     this.textStyle = const TextStyle(
       color: Colors.white,
-      fontSize: 12.0,
+      fontSize: 8.0,
     ),
     this.onClearBadge,
   }) : super(key: key);
 
   final double radius;
-  final int count;
+  final String text;
   final TextStyle textStyle;
   final Function()? onClearBadge;
 
@@ -37,7 +37,7 @@ class _QqBadgeState extends State<QqBadge> {
     bigCircleRadius = widget.radius;
     littleCircleRadius = widget.radius;
     littleCircleRadiusMax = widget.radius;
-    littleCircleRadiusMin = widget.radius * .3;
+    littleCircleRadiusMin = widget.radius * .5;
     littleCirclePoint = Point(littleCircleRadius, littleCircleRadius);
     bigCirclePoint = Point(bigCircleRadius, bigCircleRadius);
     super.initState();
@@ -54,7 +54,7 @@ class _QqBadgeState extends State<QqBadge> {
           littleCircleRadiusMax: littleCircleRadiusMax,
           littleCircleRadiusMin: littleCircleRadiusMin,
           textStyle: widget.textStyle,
-          count: widget.count,
+          text: widget.text,
           onStopDrawBezierPath: (stop) {
             _overDistance = stop;
           }),
@@ -97,7 +97,7 @@ class _MyPainter extends CustomPainter {
   double littleCircleRadiusMax;
   double littleCircleRadiusMin;
   Paint myPaint;
-  int count;
+  String text;
   TextStyle textStyle;
   Function(bool stop)? onStopDrawBezierPath;
 
@@ -108,7 +108,7 @@ class _MyPainter extends CustomPainter {
     required this.littleCircleRadius,
     required this.littleCircleRadiusMax,
     required this.littleCircleRadiusMin,
-    required this.count,
+    required this.text,
     required this.textStyle,
     this.onStopDrawBezierPath,
   }) : myPaint = Paint()
@@ -140,7 +140,7 @@ class _MyPainter extends CustomPainter {
 
     var tp = textPainter
       ..text = TextSpan(
-        text: '$count',
+        text: text,
         style: textStyle,
       )
       ..layout();

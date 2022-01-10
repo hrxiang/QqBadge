@@ -3,11 +3,13 @@
 
 #### example
 ```
-    QqBadge(
-          radius: 10,
-          count: 99,
-          onClearBadge: (){
-            print('------onClearBadge--------');
-          },
-       )
+        Container(
+              width: 20,
+              height: 20,
+              child: QqBadge(
+                text: '22',
+                radius: 10,
+                textStyle: TextStyle(fontSize: 8, color: Color(0xFFFFFFFF),),
+              ),
+            )
 ```
